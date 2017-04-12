@@ -1,0 +1,7 @@
+#formOne, #formTwo {
+	margin: 15px;
+}
+
+#formTwo {
+	display: none;
+}
