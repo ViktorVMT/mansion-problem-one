@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container clearfix">
+		<form id="form">
+			<div class="form-group">
+				<label for="address1">Address 1</label>
+				<input type="text" class="form-control" id="address1" placeholder="Address line 1" maxlength="50" required>
+			</div>
+			<div class="form-group">
+				<label for="address2">Address 2</label>
+				<input type="text" class="form-control" id="address2" placeholder="Address line 2" maxlength="50">
+			</div>
+			<div class="form-group">
+				<label for="city">City</label>
+				<input type="text" class="form-control" id="city" placeholder="City" maxlength="30" required>
+			</div>
+			<div class="form-group">
+				<label for="country">Country</label>
+				<input type="text" class="form-control" id="country" placeholder="Country" maxlength="30" required>
+			</div>
+			<div class="form-group">
+				<label for="postalCode">Postal Code</label>
+				<input type="text" class="form-control" id="postalCode" placeholder="Postal Code" required>
+			</div>
+			<div class="form-group">
+				<label for="phoneNumber">Phone Number</label>
+				<input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number" required>
+			</div>
+			<div class="collapse-group">
+				<div class="collapse-button">
+					<a class="btn" href="#">Do you have a bonus code? Click here.</a>
+				</div>
+				<div class="form-group collapse">
+					<label for="bonusCode">Bonus Code</label>
+					<input type="text" class="form-control" id="bonusCode" maxlength="30" placeholder="Enter Bonus Code">
+				</div>
+			</div>
+			<div class="form-check">
+				<label class="form-check-label">
+				<input type="checkbox" id="checkbox" class="form-check-input">
+				By checking this box, I agree to <a href="#">Terms &amp; Conditions</a> of the site.
+				</label>
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+
+	<div class="container">
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">	    
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h2 class="modal-title">Registration complete!</h2>
+					</div>
+					<div class="modal-body">
+						<p>Thank you. You can now play with real money. Have fun, and good luck!</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="playNow" class="btn btn-primary" data-dismiss="modal">Play Now</button>
+						<button type="button" id="goToPromotions" class="btn btn-primary" data-dismiss="modal">Promotions</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		//checkbox must be checked
+		document.getElementById('form').onsubmit = function() {
+			var checkedBox = document.getElementById("checkbox").checked;
+			if (checkedBox === false) {
+				alert("You must agree to the Terms and Conditions on this site.");
+				return false;
+			}
+			$('#myModal').modal('show');
+			return false;
+		}
+		// Address 1, Address 2, City, Country, Postal Code, Phone Number, Bonus Code, Checkbox
+		// make more form validations if time permits
+		window.onload = function() {
+			$(document).on("click", "#playNow", function(event){
+			    window.location.href = "http://www.casino.com/casino-games/"; 
+			});
+			$(document).on("click", "#goToPromotions", function(event){
+			    window.location.href = "http://www.casino.com/promotions/"; 
+			});
+			$('.collapse-button .btn').on('click', function(e) {
+			    e.preventDefault();
+			    var $this = $(this);
+			    var $collapse = $this.closest('.collapse-group').find('.collapse');
+			    $collapse.collapse('toggle');
+			});
+		}
+	</script>
+	<style>
+		.field-error .control-label,
+		.field-error .help-block,
+		.field-error .form-control-feedback {
+		    color: #ff0039;
+		}
+
+		.field-success .control-label,
+		.field-success .help-block,
+		.field-success .form-control-feedback {
+		    color: #2780e3;
+		}
+		#form {
+			margin: 15px;
+		}
+	</style>
+</body>
+</html>

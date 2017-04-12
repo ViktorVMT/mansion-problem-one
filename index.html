@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container clearfix">
+		<form id="form">
+			<div class="form-group">
+				<label for="exampleInputEmail1">Email address</label>
+				<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
+			</div>
+			<div class="form-group">
+				<label for="inputUsername">Username</label>
+				<input type="text" class="form-control" id="inputUsername" title="Username must be between 4 and 12 characters long." placeholder="Enter username" pattern=".{4,12}" maxlength="12" required>
+			</div>
+			<div class="form-group">
+				<label for="inputPassword1">Password</label>
+				<input type="password" class="form-control" id="inputPassword1" placeholder="Password" pattern="(?=^.{6,12}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" maxlength="12" title="Password must be between 6 and 12 characters long and contain at least one lower case letter, one capital letter, and a number or a special character." required>
+			</div>
+			<div class="form-group">
+				<label for="inputPassword2">Retype password</label>
+				<input type="password" class="form-control" id="inputPassword2" placeholder="Retype password" pattern="(?=^.{6,12}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" maxlength="12" title="Password must be between 6 and 12 characters long and contain at least one lower case letter, one capital letter, and a number or a special character." required>
+			</div>
+			<div class="form-check">
+				<label class="form-check-label">
+				<input type="checkbox" id="checkbox" class="form-check-input">
+				By checking this box, I agree to <a href="#">Terms &amp; Conditions</a> of the site.
+				</label>
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+
+	<div class="container">
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">	    
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h2 class="modal-title">You're ready to play!</h2>
+					</div>
+					<div class="modal-body">
+						<p>In order to play with real money, you will need to provide more information. You can do so now if you wish, or skip and do it at a later time.</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="continueRegistration" class="btn btn-primary" data-dismiss="modal">Continue Regisration</button>
+						<button type="button" id="skipRegistration" class="btn btn-primary" data-dismiss="modal">Skip</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		// make more form validations if time permits
+		window.onload = function() {
+			$(document).on("click", "#continueRegistration", function(event){
+			    alert( "GO" ); 
+			});
+			$(document).on("click", "#skipRegistration", function(event){
+			    window.location.href = "http://www.casino.com/"; 
+			});
+		}
+		document.getElementById('form').onsubmit = function() {
+			var checkedBox = document.getElementById("checkbox").checked;
+			if (checkedBox === false) {
+				alert("You must agree to the Terms and Conditions on this site.");
+				return false;
+			}
+			var password1 = document.getElementById("inputPassword1").value;
+			var password2 = document.getElementById("inputPassword2").value;
+			if (password1 !== password2) {
+				alert("Both password fields must match.");
+				return false;
+			}
+			$('#myModal').modal('show');
+			return false;
+		}
+
+	</script>
+	<style>
+		#form {
+			margin: 15px;
+		}
+	</style>
+</body>
+</html>
